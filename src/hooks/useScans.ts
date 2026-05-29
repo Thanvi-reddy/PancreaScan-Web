@@ -19,7 +19,7 @@ export const useScans = (setView: (v: string) => void, user: any, showToast: (ms
           // Normalise image field – use full URL if needed
           const normalized = result.scans.map((r: any) => ({
             ...r,
-            image: r.image_path ? `http://14.139.187.229:8081/oct/pancreas/${r.image_path}` : r.image || '',
+            image: r.image_path ? `/api/${r.image_path}` : r.image || '',
             box_left: r.box_left ?? 0.1,
             box_top: r.box_top ?? 0.2,
             box_right: r.box_right ?? 0.8,

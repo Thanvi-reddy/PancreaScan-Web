@@ -1,7 +1,4 @@
-export const API_BASE_URL =
-  window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? '/api/'
-    : 'http://14.139.187.229:8081/oct/pancreas/';
+export const API_BASE_URL = '/api/';
 
 /**
  * Standard utility wrapper for posting Form Data records to sync.php or auth.php

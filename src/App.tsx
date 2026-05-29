@@ -7,9 +7,7 @@ import './App.css';
 import { ScanReport } from './components/ScanReport';
 
 // Base API URL with CORS-bypass dev-tunnel proxy fallback
-const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? '/api/'
-  : 'http://14.139.187.229:8081/oct/pancreas/';
+const API_BASE_URL = '/api/';
 
 interface ScanRecord {
   id: number | string;

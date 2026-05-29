@@ -21,6 +21,12 @@
     Cache-Control = "public, max-age=86400"
 
 [[redirects]]
+  from = "/api/*"
+  to = "http://14.139.187.229:8081/oct/pancreas/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
