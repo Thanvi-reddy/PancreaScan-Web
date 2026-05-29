@@ -8,9 +8,17 @@ let onnxSession: ort.InferenceSession | null = null;
 export const loadONNXModel = async () => {
   if (!onnxSession) {
     try {
-      // Initialize ONNX WebAssembly compilation session
-      onnxSession = await ort.InferenceSession.create('/models/pancreas.onnx');
-      console.log('✅ YOLOv8 Pancreas ONNX model loaded successfully via ONNX Runtime Web.');
+      // 1. Attempt high-speed GitHub Release CDN first to bypass Git LFS bandwidth limits completely
+      const cdnUrl = 'https://github.com/Thanvi-reddy/PancreaScan/releases/download/v1.0.0/pancreas.onnx';
+      console.log('⏳ Initializing YOLOv8 Pancreas ONNX session from CDN:', cdnUrl);
+      try {
+        onnxSession = await ort.InferenceSession.create(cdnUrl);
+      } catch (cdnErr) {
+        console.warn('⚠️ CDN load failed, falling back to local static asset:', cdnErr);
+        // 2. Local fallback path
+        onnxSession = await ort.InferenceSession.create('/models/pancreas.onnx');
+      }
+      console.log('✅ YOLOv8 Pancreas ONNX model loaded successfully.');
     } catch (err) {
       console.error('❌ Failed to load ONNX model client-side:', err);
       throw err;
