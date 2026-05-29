@@ -2,9 +2,25 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const mimeFixPlugin = {
+  name: 'mime-fix-plugin',
+  configureServer(server: any) {
+    server.middlewares.use((req: any, res: any, next: any) => {
+      const url = req.url || '';
+      if (url.includes('.wasm')) {
+        res.setHeader('Content-Type', 'application/wasm');
+      } else if (url.includes('ort-wasm') && url.endsWith('.js')) {
+        res.setHeader('Content-Type', 'application/javascript');
+      }
+      next();
+    });
+  }
+};
+
 export default defineConfig({
   plugins: [
     react(),
+    mimeFixPlugin,
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
