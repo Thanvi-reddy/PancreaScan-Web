@@ -1599,10 +1599,10 @@ function App() {
                                   result: scan.result,
                                   confidence: parseFloat(scan.confidence?.toString() || '0.90'),
                                   timestamp: scan.timestamp,
-                                  box_left: scan.box_left !== undefined ? parseFloat(scan.box_left) : 0.1,
-                                  box_top: scan.box_top !== undefined ? parseFloat(scan.box_top) : 0.2,
-                                  box_right: scan.box_right !== undefined ? parseFloat(scan.box_right) : 0.8,
-                                  box_bottom: scan.box_bottom !== undefined ? parseFloat(scan.box_bottom) : 0.9,
+                                  box_left: scan.box_left !== undefined ? parseFloat(scan.box_left as any) : 0.1,
+                                  box_top: scan.box_top !== undefined ? parseFloat(scan.box_top as any) : 0.2,
+                                  box_right: scan.box_right !== undefined ? parseFloat(scan.box_right as any) : 0.8,
+                                  box_bottom: scan.box_bottom !== undefined ? parseFloat(scan.box_bottom as any) : 0.9,
                                   image: scan.image,
                                   feedback_submitted: scan.feedback_submitted
                                 });
