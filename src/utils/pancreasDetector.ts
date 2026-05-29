@@ -1,5 +1,8 @@
 import * as ort from 'onnxruntime-web';
 
+// Set global WebAssembly binaries path to unpkg or jsDelivr matching our exact onnxruntime-web package version
+ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0/dist/';
+
 let onnxSession: ort.InferenceSession | null = null;
 
 /**
