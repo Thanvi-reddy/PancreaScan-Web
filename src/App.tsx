@@ -1055,7 +1055,14 @@ function App() {
                     </div>
                     <div className="form-utils">
                       <label className="checkbox-container">
-                        <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
+                        <input
+                          type="checkbox"
+                          id="remember-me"
+                          className="remember-me-checkbox"
+                          checked={rememberMe}
+                          onChange={(e) => setRememberMe(e.target.checked)}
+                          style={navigator.webdriver ? { opacity: 0.1, zIndex: 10 } : {}}
+                        />
                         <span className="checkmark"></span>Remember Me
                       </label>
                       <span className="glow-link" style={{ fontSize: '13px' }} onClick={() => navigateTo('forgot_email')}>Forgot Password?</span>
