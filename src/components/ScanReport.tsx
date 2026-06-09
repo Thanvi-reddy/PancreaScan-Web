@@ -183,7 +183,7 @@ export const ScanReport: React.FC<ScanReportProps> = ({
           className="btn-download btn-solid"
           style={{ flex: 1, padding: '10px', background: 'rgba(0,240,255,0.12)', border: '1px solid rgba(0,240,255,0.3)', borderRadius: '8px', color: '#00f0ff', fontWeight: 600 }}
         >
-          Share & Download Report
+          Download PDF
         </button>
         <button
           onClick={onClose}
