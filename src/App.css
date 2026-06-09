@@ -546,10 +546,15 @@ body {
 
 .checkbox-container input {
   position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
   opacity: 0;
   cursor: pointer;
-  height: 0;
-  width: 0;
+  z-index: 2;
+  margin: 0;
 }
 
 .checkmark {
@@ -561,6 +566,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 4px;
   transition: all 0.2s;
+  z-index: 1;
 }
 
 .checkbox-container:hover input ~ .checkmark {
@@ -1397,7 +1403,6 @@ body {
   font-size: 12px;
   font-weight: 700;
   color: var(--text-secondary);
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 2.5px solid rgba(255, 255, 255, 0.06);
 }
@@ -1921,13 +1926,15 @@ body {
 /* Title Letter Fade-In Animation */
 .fade-letter {
   display: inline-block;
-  opacity: 0;
   color: #ffffff;
-  transform: translateY(12px);
   animation: letterFadeIn 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes letterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1957,12 +1964,14 @@ body {
 
 /* Slide in from left */
 .slide-in-left {
-  opacity: 0;
-  transform: translateX(-35px);
   animation: slideInLeftAnim 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes slideInLeftAnim {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
   to {
     opacity: 1;
     transform: translateX(0);
@@ -1971,12 +1980,14 @@ body {
 
 /* Slide in from right */
 .slide-in-right {
-  opacity: 0;
-  transform: translateX(35px);
   animation: slideInRightAnim 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes slideInRightAnim {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
   to {
     opacity: 1;
     transform: translateX(0);
@@ -2112,4 +2123,14 @@ body {
   50% {
     box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
   }
+}
+
+#btn-rescan::before {
+  content: "🔄 ";
+  margin-right: 4px;
+}
+
+#btn-sync::before {
+  content: "💾 ";
+  margin-right: 4px;
 }

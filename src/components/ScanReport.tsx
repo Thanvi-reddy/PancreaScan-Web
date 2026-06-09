@@ -100,33 +100,34 @@ export const ScanReport: React.FC<ScanReportProps> = ({
 
   return (
     <div
-      className="scan-report glass-card animate-fade-in"
+      className="scan-report report-screen glass-card animate-fade-in"
       style={{ background: '#0a0d14', color: '#e1e8f0', padding: '24px', borderRadius: '12px' }}
       ref={reportRef}
     >
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h2 style={{ margin: 0, color: '#fff' }}>Diagnostic Report</h2>
-        <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#fff', fontSize: '18px' }}>
-          ✖️
+      <div className="report-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h2 className="report-title" style={{ margin: 0, color: '#fff' }}>Diagnostic Report</h2>
+        <button className="btn-close" onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#fff', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          ✖️ Close
         </button>
       </div>
 
       {/* Canvas */}
-      <div style={{ marginTop: '24px', textAlign: 'center' }}>
+      <div className="report-image-wrapper" style={{ marginTop: '24px', textAlign: 'center' }}>
         <canvas ref={canvasRef} style={{ maxWidth: '100%', borderRadius: '8px' }} />
       </div>
 
       {/* Patient Info Card */}
-      <div className="glass-card" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px' }}>
+      <div className="glass-card report-meta" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px' }}>
         <h3 style={{ marginBottom: '8px', color: '#fff' }}>Patient Information</h3>
-        <p><strong>ID:</strong> {patientId}</p>
-        <p><strong>Name:</strong> {patientName}</p>
-        <p><strong>Scan Date:</strong> {new Date(timestamp).toLocaleString()}</p>
+        <p><strong>Patient:</strong> {patientName} (ID: {patientId})</p>
+        <p><strong>Result:</strong> {result}</p>
+        <p><strong>Confidence:</strong> {(confidence * 100).toFixed(1)}%</p>
+        <p><strong>Timestamp:</strong> {timestamp}</p>
       </div>
 
       {/* Analysis Results Card */}
-      <div className="glass-card" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px' }}>
+      <div className="glass-card analysis-results" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px' }}>
         <h3 style={{ marginBottom: '8px', color: '#fff' }}>Analysis Results</h3>
         <p><strong>Prediction:</strong> {result === 'Normal' ? 'Normal Pancreas' : 'Abnormal Pancreatitis/Edema'}</p>
         <p><strong>Confidence:</strong> {(confidence * 100).toFixed(1)}%</p>
@@ -148,7 +149,7 @@ export const ScanReport: React.FC<ScanReportProps> = ({
       </div>
 
       {/* Final Observation Card */}
-      <div className="glass-card" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px', display: 'flex', alignItems: 'center' }}>
+      <div className="glass-card final-observation" style={{ marginTop: '24px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '16px', display: 'flex', alignItems: 'center' }}>
         {result === 'Normal' ? (
           <>
             <span style={{ color: '#10B981', fontSize: '24px', marginRight: '12px' }}>✅</span>
@@ -175,15 +176,19 @@ export const ScanReport: React.FC<ScanReportProps> = ({
 
 
       {/* Bottom Buttons */}
-      <div style={{ marginTop: '32px', display: 'flex', gap: '16px' }}>
+      <div className="report-actions" style={{ marginTop: '32px', display: 'flex', gap: '16px' }}>
         <button
           onClick={handlePdfDownload}
+          id="btn-download"
+          className="btn-download btn-solid"
           style={{ flex: 1, padding: '10px', background: 'rgba(0,240,255,0.12)', border: '1px solid rgba(0,240,255,0.3)', borderRadius: '8px', color: '#00f0ff', fontWeight: 600 }}
         >
-          Share &amp; Download Report
+          Share & Download Report
         </button>
         <button
           onClick={onClose}
+          id="btn-return-dashboard"
+          className="btn-return-dashboard btn-outline"
           style={{ flex: 1, padding: '10px', background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '8px', color: '#fff', fontWeight: 600 }}
         >
           Return to Dashboard
@@ -191,7 +196,7 @@ export const ScanReport: React.FC<ScanReportProps> = ({
       </div>
 
       {/* Disclaimer */}
-      <div style={{ marginTop: '24px', fontSize: '12px', color: '#7f92b0' }}>
+      <div className="disclaimer" style={{ marginTop: '24px', fontSize: '12px', color: '#7f92b0' }}>
         <strong>Disclaimer:</strong> This is a clinical screening assistant. It does not replace a professional medical diagnosis.
       </div>
     </div>
