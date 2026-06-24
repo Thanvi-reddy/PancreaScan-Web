@@ -267,11 +267,11 @@ export default function ThreeDCanvas({ mode = 'login', imageSrc, box }: ThreeDCa
 
     // --- Animation Loop ---
     let frameId: number;
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) / 1000;
 
       // Soft breathing glow background
       glowMat.opacity = 0.02 + Math.sin(elapsedTime * 1.5) * 0.008;

@@ -113,11 +113,11 @@ export default function AnalyticsDonut3D({ normalPercent, abnormalPercent, total
 
     // --- Animation loop ---
     let frameId: number;
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) / 1000;
 
       // Satisfying rotating entry animation
       if (elapsedTime < 1.5) {
